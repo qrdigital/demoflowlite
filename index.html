@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCat & BioCat</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root {
+    --color-principal: #111;
+    --color-secundario: #c19a6b;
+    --color-fondo: #f5f5f5;
+    --color-texto: #333;
+    --color-blanco: #fff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    background: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+/* ESTILO PARA EL ENLACE DEMO */
+.demo-link-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-demo {
+    display: inline-block;
+    color: var(--color-principal);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    border: 1px solid var(--color-principal);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-demo i {
+    margin-right: 5px;
+}
+
+.btn-demo:hover {
+    background: var(--color-principal);
+    color: white;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-dark {
+    background: var(--color-principal);
+    color: white;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.section {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.section.active {
+    display: block;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-secundario);
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-secundario);
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <h1>SmartCat & BioCat</h1>
+    <p>Si es fácil para el cliente, es rentable para el negocio</p>
+</header>
+
+<div class="demo-link-container">
+    <a href="video1.mp4" class="btn-demo" target="_blank">
+        <i class="fas fa-play-circle"></i> Ver Demo
+    </a>
+</div>
+
+<div class="menu">
+    <button class="btn btn-dark" onclick="toggle('ventas')">Ventas</button>
+    <button class="btn btn-dark" onclick="toggle('operacion')">Operación</button>
+    <button class="btn btn-dark" onclick="toggle('costos')">Rentabilidad</button>
+    <button class="btn btn-dark" onclick="toggle('cliente')">Cliente</button>
+
+    <a href="https://wa.me/51990582170?text=Hola,%20quiero%20ver%20cómo%20funciona" class="btn btn-whatsapp" target="_blank">
+        Ver cómo funciona
+    </a>
+</div>
+
+<div id="ventas" class="section">
+    <h2>Ventas</h2>
+    <ul>
+        <li><strong>Recompra inmediata:</strong> El cliente vuelve sin buscarte.</li>
+        <li><strong>Pedido sin fricción:</strong> Compra en menos pasos.</li>
+        <li><strong>Compra clara:</strong> Entiende qué hacer sin distracciones.</li>
+        <li><strong>Menos consultas, más compras</strong></li>
+    </ul>
+</div>
+
+<div id="operacion" class="section">
+    <h2>Operación</h2>
+    <ul>
+        <li><strong>Un solo envío:</strong> Un enlace reemplaza todo.</li>
+        <li><strong>Actualización automática:</strong> Cambias una vez y listo.</li>
+        <li><strong>Continuidad total:</strong> Tus enlaces siguen funcionando siempre.</li>
+    </ul>
+</div>
+
+<div id="costos" class="section">
+    <h2>Rentabilidad</h2>
+    <ul>
+        <li><strong>Sin impresión:</strong> Eliminas catálogos físicos.</li>
+        <li><strong>Sin almacenamiento:</strong> No ocupa espacio.</li>
+        <li><strong>Acceso permanente:</strong> El cliente puede volver en cualquier momento.</li>
+    </ul>
+</div>
+
+<div id="cliente" class="section">
+    <h2>Cliente</h2>
+    <ul>
+        <li><strong>Acceso simple:</strong> Todo en segundos.</li>
+        <li><strong>Compra sin esfuerzo:</strong> Volver a comprar es inmediato.</li>
+        <li><strong>Confianza:</strong> Percibe orden y profesionalismo.</li>
+    </ul>
+</div>
+
+<footer>
+    FlowLite Systems
+</footer>
+
+</div>
+
+<script>
+function toggle(id) {
+    let sections = document.querySelectorAll('.section');
+    sections.forEach(s => s.classList.remove('active'));
+
+    let target = document.getElementById(id);
+    target.classList.add('active');
+    
+    target.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
