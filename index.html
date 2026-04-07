@@ -49,10 +49,29 @@ header p {
     color: var(--color-secundario);
 }
 
-/* ESTILO PARA EL ENLACE DEMO */
+/* ESTILO PARA LA DEFINICIÓN DEL PRODUCTO */
+.definicion-producto {
+    background: var(--color-blanco);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--color-secundario);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.definicion-producto p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.definicion-producto strong {
+    color: var(--color-principal);
+}
+
 .demo-link-container {
     text-align: center;
-    margin: 20px 0;
+    margin-bottom: 25px;
 }
 
 .btn-demo {
@@ -61,14 +80,14 @@ header p {
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
-    padding: 8px 20px;
+    padding: 8px 25px;
     border: 1px solid var(--color-principal);
-    border-radius: 20px;
+    border-radius: 25px;
     transition: all 0.3s ease;
 }
 
 .btn-demo i {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .btn-demo:hover {
@@ -155,6 +174,14 @@ footer {
     <h1>SmartCat & BioCat</h1>
     <p>Si es fácil para el cliente, es rentable para el negocio</p>
 </header>
+
+<div class="definicion-producto">
+    <p>
+        <strong>SmartCat / BioCat</strong> es un sistema de ventas que facilita la recompra desde un solo enlace. 
+        Convierte cada cliente en una nueva venta, reduciendo la fricción entre el interés y la acción. 
+        Tu negocio organizado para que comprar sea simple.
+    </p>
+</div>
 
 <div class="demo-link-container">
     <a href="video1.mp4" class="btn-demo" target="_blank">
