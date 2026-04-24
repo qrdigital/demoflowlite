@@ -33,81 +33,70 @@
             padding: 15px;
         }
 
-        /* 1. IMPACTO VISUAL FUERTE */
+        /* HEADER CORREGIDO */
         header {
             background: var(--negro);
             color: white;
-            padding: 45px 20px;
+            padding: 40px 15px;
             border-radius: 12px;
             text-align: center;
         }
 
-header h1 {
-    font-size: 7vw; /* Se ajusta según el ancho de la pantalla */
-    margin: 0 0 20px 0;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    text-align: center;
-    display: block;
-    width: 100%;
-}
-
-/* Limites para que no crezca demasiado en pantallas grandes o se encoja de más en pequeñas */
-@media (min-width: 480px) {
-    header h1 { font-size: 1.5rem; }
-}
-@media (max-width: 360px) {
-    header h1 { font-size: 1.2rem; white-space: normal; } /* Permite dos líneas solo en pantallas mini */
-}
+        header h1 {
+            font-size: 1.6rem; /* Tamaño fuerte */
+            margin: 0 0 25px 0;
+            font-weight: 900;
+            line-height: 1.2; /* Espaciado cómodo para leer */
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column; /* Apila las frases para que no se corten */
+            gap: 5px;
         }
 
-        /* Responsive para pantallas muy pequeñas */
-        @media (max-width: 400px) {
-            header h1 { font-size: 1.2rem; }
+        header h1 span {
+            display: block;
         }
 
         .btn-demo {
             display: inline-block;
             background: var(--dorado);
             color: var(--negro);
-            padding: 18px 30px;
+            padding: 18px 25px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             transition: transform 0.1s;
         }
 
-        /* 2. PASOS CORTOS = RÁPIDOS */
+        /* PASOS */
         .section {
             background: white;
-            padding: 25px;
+            padding: 22px;
             border-radius: 12px;
             margin-top: 15px;
         }
 
         .section h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 20px;
             color: #666;
         }
 
-        .step-list {
-            display: grid;
-            gap: 10px;
-        }
+        .step-list { display: grid; gap: 8px; }
 
         .step-item {
             display: flex;
             align-items: center;
-            background: #fafafa;
-            padding: 12px 18px;
+            background: #fcfcfc;
+            border: 1px solid #eee;
+            padding: 12px 15px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
         .step-item::before {
@@ -116,20 +105,21 @@ header h1 {
             color: var(--dorado);
         }
 
-        /* 3. GOLPE EMOCIONAL */
+        /* BENEFICIOS */
         .benefit-item {
             display: block;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
             font-weight: 600;
         }
 
-        /* 4. CTA FINAL CRÍTICO */
+        /* CTA FINAL */
         .destaque-final {
             display: block;
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
             color: #444;
+            padding: 0 10px;
         }
 
         .btn-cta {
@@ -137,12 +127,12 @@ header h1 {
             background: var(--whatsapp);
             color: white;
             text-align: center;
-            padding: 22px;
+            padding: 20px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
         }
 
         .btn-cta:active, .btn-demo:active { transform: scale(0.96); }
@@ -151,8 +141,9 @@ header h1 {
             text-align: center;
             font-size: 0.7rem;
             color: #bbb;
-            margin-top: 40px;
-            letter-spacing: 2px;
+            margin-top: 30px;
+            padding-bottom: 20px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -161,7 +152,10 @@ header h1 {
 <div class="container">
 
     <header>
-        <h1>Tus clientes no deberían preguntar. Deberían comprar.</h1>
+        <h1>
+            <span>Tus clientes no deberían preguntar.</span>
+            <span style="color: var(--dorado);">Deberían comprar.</span>
+        </h1>
         <a href="video1.mp4" class="btn-demo">
             ▶ VER DEMO EN 20 SEGUNDOS
         </a>
