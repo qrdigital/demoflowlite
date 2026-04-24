@@ -42,12 +42,23 @@
             text-align: center;
         }
 
-        header h1 {
-            font-size: 1.5rem; /* Ajustado para una sola línea visual */
-            margin: 0 0 20px 0;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            white-space: nowrap; /* Fuerza la línea única */
+header h1 {
+    font-size: 7vw; /* Se ajusta según el ancho de la pantalla */
+    margin: 0 0 20px 0;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+/* Limites para que no crezca demasiado en pantallas grandes o se encoja de más en pequeñas */
+@media (min-width: 480px) {
+    header h1 { font-size: 1.5rem; }
+}
+@media (max-width: 360px) {
+    header h1 { font-size: 1.2rem; white-space: normal; } /* Permite dos líneas solo en pantallas mini */
+}
         }
 
         /* Responsive para pantallas muy pequeñas */
