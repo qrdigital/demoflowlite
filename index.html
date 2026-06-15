@@ -10,7 +10,7 @@
             --negro: #111;
             --dorado: #c19a6b;
             --gris-fondo: #f4f4f4;
-            --whatsapp: #25D366;
+            --whatsapp: #10b981;
             --texto-suave: #666;
         }
 
@@ -34,29 +34,36 @@
         header {
             background: var(--negro);
             color: white;
-            padding: 45px 20px;
+            padding: 35px 15px;
             border-radius: 12px;
             text-align: center;
         }
 
         header h1 {
             font-size: 1.7rem;
-            margin: 0 0 30px 0;
+            margin: 0 0 25px 0;
             font-weight: 900;
             line-height: 1.1;
             letter-spacing: -0.8px;
         }
 
-        .btn-demo {
-            display: inline-block;
-            background: var(--dorado);
-            color: var(--negro);
-            padding: 20px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-transform: uppercase;
+        /* CONTENEDOR OPTIMIZADO PARA FORMATO VERTICAL TIKTOK (9:16) */
+        .video-container {
+            width: 100%;
+            max-width: 320px;       /* Limita el ancho para que no quede excesivamente alto en el celular */
+            aspect-ratio: 9 / 16;   /* Formato vertical estricto de TikTok */
+            margin: 20px auto 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;       /* Asegura que el video vertical llene todo el espacio sin deformarse */
         }
 
         /* SECCIONES */
@@ -118,8 +125,11 @@
             text-align: center;
             padding: 10px 0;
         }
-        .price-label { font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; color: var(--texto-suave); }
+        .price-title { font-size: 1.4rem; font-weight: 800; color: var(--negro); margin-bottom: 15px; }
         .price-value { font-size: 3.5rem; font-weight: 900; margin: 5px 0; color: var(--negro); }
+        .price-value span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); }
+        .price-description { font-size: 0.95rem; color: var(--texto-suave); margin: 15px 0; }
+        .price-highlight { color: #10b981; font-weight: 700; margin-bottom: 25px; font-size: 0.95rem; }
 
         /* CTA */
         .btn-cta {
@@ -131,36 +141,11 @@
             border-radius: 15px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.3rem;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
         }
 
-        /* FICHA TÉCNICA DESPLEGABLE */
-        details {
-            margin-top: 20px;
-            background: #eee;
-            border-radius: 10px;
-            padding: 10px;
-        }
-        summary {
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            text-align: center;
-            padding: 5px;
-            color: #555;
-            list-style: none;
-        }
-        .tech-content {
-            padding: 15px 10px;
-            font-size: 0.85rem;
-            color: #444;
-            text-align: left;
-        }
-        .tech-item { margin-bottom: 12px; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
-        .tech-item b { display: block; color: var(--negro); margin-bottom: 2px; }
-
-        .btn-cta:active, .btn-demo:active { transform: scale(0.97); }
+        .btn-cta:active { transform: scale(0.97); }
 
         .footer {
             text-align: center;
@@ -181,62 +166,47 @@
             <span>Tus clientes no deberían preguntar.</span>
             <span style="color: var(--dorado);">Deberían comprar.</span>
         </h1>
-        <a href="https://qrdigital.github.io/demoflowlite/video1.mp4" class="btn-demo">
-            ▶ VER DEMO EN 20 SEGUNDOS
-        </a>
+        
+        <!-- Contenedor optimizado en formato vertical 9:16 (Estilo TikTok) -->
+        <div class="video-container">
+            <video controls playsinline preload="metadata">
+                <source src="https://qrdigital.github.io/demoflowlite/video1.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
     </header>
 
     <div class="section">
         <h2>ASÍ COMPRA TU CLIENTE:</h2>
         <div class="step-list">
-            <div class="step-item">Entra al link</div>
-            <div class="step-item">Ve todo claro</div>
-            <div class="step-item">Toca pedir</div>
-            <div class="step-item">Pedido listo</div>
+            <div class="step-item">Entra al enlace sin hacer descargas</div>
+            <div class="step-item">Ve todo claro y entiende tu negocio</div>
+            <div class="step-item">Selecciona y hace pedido</div>     
         </div>
     </div>
 
     <div class="section">
-        <div class="benefit-item">Adiós a las preguntas repetitivas</div>
-        <div class="benefit-item">Más pedidos, menos chats</div>
-        <div class="benefit-item">Enlace profesional</div>
+        <div class="benefit-item">Menos preguntas repetitivas</div>
+        <div class="benefit-item">Más pedidos claros</div>
+        <div class="benefit-item">Cero configuración para ti</div>
         <div class="benefit-item">Listo en 24 horas</div>
-        <div class="benefit-item">Actualizamos en 1 hora</div>
+        <div class="benefit-item">Actualizaciones al instante</div>
     </div>
 
     <div class="section" style="text-align: center;">
         <div class="price-box">
-            <span class="price-label">INVERSIÓN ANUAL</span>
-            <div class="price-value">S/ 300</div>
+            <div class="price-title">Empieza a cerrar ventas</div>
+            <div class="price-value">S/ 300 <span>/ Inversión anual</span></div>
+            <div class="price-description">Tú envías la información, nosotros hacemos el resto.</div>
+            <div class="price-highlight">Creamos tu VentaLista y la dejamos funcionando.</div>
         </div>
-        <a href="https://wa.me/51928644516?text=Hola,%20quiero%20mi%20negocio%20así" class="btn-cta">
-            Quiero mi negocio así
+        
+        <a href="https://wa.me/51928644516?text=Hola,%20quiero%20solicitar/información%20VentaLista" class="btn-cta">
+            Solicitar VentaLista vía WhatsApp
         </a>
-
-        <details>
-            <summary>⚙️ CUESTIONES TÉCNICAS Y GARANTÍAS</summary>
-            <div class="tech-content">
-                <div class="tech-item">
-                    <b>¿Cómo cambio mis precios?</b>
-                    Solo envias el formulario con los cambios que desesas realizar. Tienes 2 cambios gratis los primeros 7 días. Luego, cambios individuales S/ 20 o pack de 24 por S/ 100.
-                </div>
-                <div class="tech-item">
-                    <b>¿El sistema es mío?</b>
-                    Licencia de uso anual. Incluye alojamiento y link profesional gestionado por FlowLite para máxima velocidad.
-                </div>
-                <div class="tech-item">
-                    <b>¿Y si no renuevo?</b>
-                    Tu info es tuya. Tienes 30 días post-contrato para solicitar tus datos antes de ser eliminados por privacidad.
-                </div>
-                <div class="tech-item">
-                    <b>Sobre el precio:</b>
-                    Si nuestros costos de infraestructura no suben, tu tarifa de S/ 300 se mantiene igual año tras año.
-                </div>
-            </div>
-        </details>
     </div>
 
-    <div class="footer">FLOWLITE SYSTEMS &copy; 2026<br>INGENIERÍA PARA VENTAS DIGITALES</div>
+    <div class="footer">&copy; 2025 VentaLista. Infraestructura y diseño comercial.</div>
 
 </div>
 
