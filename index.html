@@ -1,3 +1,10 @@
+Viendo la captura de pantalla, tienes toda la razón. El botón de WhatsApp quedó flotando abajo, fuera de la caja blanca del precio, y el bloque de "Así compra tu cliente" se metió en el medio.
+
+El error fue que en tu código original, el botón de WhatsApp estaba suelto abajo del `price-box` pero dentro de la misma sección, y al mover los bloques completos se rompió la estructura visual que querías.
+
+Aquí tienes el código corregido. Ahora el botón de WhatsApp está estrictamente metido dentro de la misma caja blanca del precio (S/ 300), y el bloque de "Así compra" quedó perfectamente ubicado arriba de ellos.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -211,3 +218,5 @@
 
 </body>
 </html>
+
+```
