@@ -1,3 +1,8 @@
+Aquí tienes el código base exacto que me pasaste. He incorporado el bloque interactivo **"Diagnóstico de tu Segmento"** justo antes de la sección de inversión, respetando estrictamente tus clases CSS, variables de entorno (`--dorado`, `--negro`, `--whatsapp`) y el diseño minimalista limpio para móviles.
+
+Además, aproveché para corregir dos etiquetas duplicadas/abiertas en tu marcado original dentro del `<header>` para asegurar que el video y el texto se rendericen perfectamente sin romper el flujo.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,7 +68,7 @@
         .video-container video {
             width: 100%;
             height: 100%;
-  log-display: block;
+            display: block;
             object-fit: cover;
         }
 
@@ -121,6 +126,98 @@
             line-height: 0;
         }
 
+        /* ESTILOS DEL DIAGNÓSTICO INTERACTIVO */
+        .question-card {
+            display: none;
+            background-color: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .question-card h3 {
+            font-size: 0.95rem;
+            margin: 0 0 12px 0;
+            color: var(--negro);
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .option-select {
+            width: 100%;
+            padding: 12px;
+            font-size: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #ffffff;
+            color: #222;
+            outline: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .option-select:focus {
+            border-color: var(--dorado);
+        }
+
+        .result-container {
+            display: none;
+            background-color: #fcf9f5;
+            border: 2px solid var(--dorado);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .result-rec {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--dorado);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .tool-box {
+            background: #ffffff;
+            border: 1px solid #eee;
+            border-left: 4px solid var(--dorado);
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .tool-box strong {
+            display: block;
+            color: var(--negro);
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .tool-box span {
+            color: var(--texto-suave);
+        }
+
+        .reset-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--texto-suave);
+            text-decoration: underline;
+            font-size: 0.8rem;
+            margin: 12px auto 0 auto;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
         /* BLOQUE DE INVERSIÓN */
         .price-box {
             text-align: center;
@@ -156,31 +253,33 @@
             padding-bottom: 30px;
             font-weight: 600;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
 
- <header>
-    <h1>
-        <span>Tus clientes no deberían preguntar.</span>
-        <span style="color: var(--dorado);">Deberían comprar.</span>
-    </h1>
-
-    <p style="
-        font-size: 1.05rem;
-        line-height: 1.5;
-        margin: 0 auto 20px auto;
-        max-width: 320px;
-        color: rgba(255,255,255,0.9);
-        font-weight: 500;
-    ">
-        Un solo enlace para que tus clientes entiendan, elijan y pidan por WhatsApp.
-    </p>
-    
-    <div class="video-container">
+    <header>
+        <h1>
+            <span>Tus clientes no deberían preguntar.</span>
+            <span style="color: var(--dorado);">Deberían comprar.</span>
         </h1>
+
+        <p style="
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin: 0 auto 20px auto;
+            max-width: 320px;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        ">
+            Un solo enlace para que tus clientes entiendan, elijan y pidan por WhatsApp.
+        </p>
         
         <div class="video-container">
             <video controls playsinline preload="metadata">
@@ -208,6 +307,58 @@
         </div>
     </div>
 
+    <!-- SECCIÓN DE DIAGNÓSTICO INCORPORADA -->
+    <div class="section" style="text-align: center;">
+        <h2>DIAGNÓSTICO DE TU SEGMENTO</h2>
+        
+        <div id="quiz-box">
+            <!-- Pregunta 1 -->
+            <div class="question-card active" id="q1">
+                <h3>1. ¿Cuál es el tipo de oferta principal de tu negocio?</h3>
+                <select class="option-select" onchange="handleSelect(1, this.value)">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="directa">Vendo productos físicos estándar, stock fijo o comida.</option>
+                    <option value="informada">Vendo productos con variantes (tallas, colores o fichas).</option>
+                    <option value="asistida">Vendo servicios a medida, asesorías o personalizables.</option>
+                    <option value="brochure">Ofrezco soluciones B2B o corporativas de alto valor.</option>
+                </select>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question-card" id="q2">
+                <h3>2. ¿Cuál es el mayor cuello de botella en tu WhatsApp?</h3>
+                <select class="option-select" onchange="handleSelect(2, this.value)">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="directa">Demoro demasiado enviando precios y fotos individuales.</option>
+                    <option value="informada">Invierto horas respondiendo sobre medidas, stock o cambios.</option>
+                    <option value="asistida">Pierdo tiempo cotizando a personas sin presupuesto real.</option>
+                    <option value="brochure">Tengo que enviar PDFs pesados que los clientes no leen.</option>
+                </select>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="question-card" id="q3">
+                <h3>3. ¿Cómo requiere tu negocio cerrar la venta?</h3>
+                <select class="option-select" onchange="handleSelect(3, this.value)">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="directa">El cliente elige, pide directo y envía el voucher rápido.</option>
+                    <option value="informada">El cliente necesita confirmar variantes y stock antes de pagar.</option>
+                    <option value="asistida">El prospecto requiere evaluar su caso para darle precio.</option>
+                    <option value="brochure">Se necesita agendar reunión formal o validar datos RUC.</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Resultados e inyección de herramientas -->
+        <div class="result-container" id="result-box">
+            <div class="result-rec" id="rec-title">Formato Recomendado</div>
+            <div style="font-size:0.8rem; font-weight:800; color:var(--negro); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Módulos de reducción de fricción:</div>
+            <div id="tools-list"></div>
+            <button class="reset-btn" onclick="resetQuiz()">Volver a realizar el diagnóstico</button>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE INVERSIÓN ORIGINAL (EQUIVALENTE A LA IMAGEN image_8e1598.png) -->
     <div class="section" style="text-align: center;">
         <div class="price-box">
             <div class="price-title">Empieza a cerrar ventas</div>
@@ -216,8 +367,8 @@
             <div class="price-highlight">Creamos tu VentaLista y la dejamos funcionando.</div>
         </div>
         
-        <!-- Enlace con mensaje automático preconfigurado para WhatsApp -->
-        <a href="https://wa.me/51913642644?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta">
+        <!-- Enlace dinámico modificado automáticamente por el JavaScript del Test -->
+        <a href="https://wa.me/51913642644?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
             Solicitar VentaLista vía WhatsApp
         </a>
     </div>
@@ -226,5 +377,98 @@
 
 </div>
 
+<script>
+    // Lógica secuencial del test de 3 preguntas sin recargas externas
+    let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
+
+    function handleSelect(questionNum, value) {
+        scores[value]++;
+        
+        document.getElementById(`q${questionNum}`).classList.remove('active');
+        
+        if(questionNum < 3) {
+            document.getElementById(`q${questionNum + 1}`).classList.add('active');
+        } else {
+            document.getElementById('quiz-box').style.display = 'none';
+            evaluateDiagnosis();
+        }
+    }
+
+    function evaluateDiagnosis() {
+        let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+        const outputData = {
+            'directa': {
+                name: "Recomendado: Formato Compra Directa",
+                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Compra Directa. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Carrito Plano Todo-En-Uno", d: "Selección ágil de catálogo y cálculo de totales en una interfaz compacta." },
+                    { t: "Campos Express de Despacho", d: "Selectores nativos para definir entrega rápida o recojo sin salir del enlace." }
+                ]
+            },
+            'informada': {
+                name: "Recomendado: Formato Compra Informada",
+                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Compra Informada. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Selectores de Atributos Fijos", d: "Menús obligatorios para definir Tallas, Colores o Modelos antes de enviar el pedido." },
+                    { t: "Acordeones Técnicos Ligeros", d: "Bloques dinámicos plegables para guías de medidas o tablas de compatibilidad." }
+                ]
+            },
+            'asistida': {
+                name: "Recomendado: Formato Venta Asistida",
+                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Venta Asistida. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Formulario de Filtro Inicial", d: "Campos de calificación rápida para capturar necesidades específicas del cliente." },
+                    { t: "Inyector de Intención Comercial", d: "Estructura que envía los requerimientos exactos directo al asesor de atención." }
+                ]
+            },
+            'brochure': {
+                name: "Recomendado: Brochure Digital B2B",
+                message: "Hola FlowLite, completé mi diagnóstico. Requerimos la estructura de Brochure Digital Corporativo. Quiero activarlo por S/ 300.",
+                tools: [
+                    { t: "Módulo de Prestigio Rígido", d: "Despliegue visual ultra-rápido para hasta 10 hitos corporativos o casos de éxito." },
+                    { t: "Filtro de Datos RUC / Empresa", d: "Captura forzosa de datos organizacionales para agendar leads altamente calificados." }
+                ]
+            }
+        };
+
+        const selectedResult = outputData[winner];
+        document.getElementById('rec-title').innerText = selectedResult.name;
+        
+        const toolsContainer = document.getElementById('tools-list');
+        toolsContainer.innerHTML = "";
+        selectedResult.tools.forEach(tool => {
+            const div = document.createElement('div');
+            div.className = 'tool-box';
+            div.innerHTML = `<strong>${tool.t}</strong><span>${tool.d}</span>`;
+            toolsContainer.appendChild(div);
+        });
+
+        // Altera el comportamiento del botón de WhatsApp según la necesidad del segmento analizado
+        const cta = document.getElementById('main-cta');
+        cta.href = `https://wa.me/51913642644?text=${encodeURIComponent(selectedResult.message)}`;
+        
+        document.getElementById('result-box').style.display = 'block';
+    }
+
+    function resetQuiz() {
+        scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
+        document.getElementById('result-box').style.display = 'none';
+        
+        const selects = document.querySelectorAll('.option-select');
+        selects.forEach(sel => sel.value = "");
+
+        document.getElementById('quiz-box').style.display = 'block';
+        document.getElementById('q1').classList.add('active');
+        document.getElementById('q2').classList.remove('active');
+        document.getElementById('q3').classList.remove('active');
+        
+        // Restablece el mensaje estándar original
+        document.getElementById('main-cta').href = "https://wa.me/51913642644?text=Hola,%20quiero%20información/solicitar%20VentaLista";
+    }
+</script>
+
 </body>
 </html>
+
+```
