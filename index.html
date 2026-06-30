@@ -1,6 +1,3 @@
-Aquí tienes el código manteniendo intacta toda tu estructura, estilos y elementos originales. He integrado una sección interactiva de **Preguntas de Autodiagnóstico** justo antes del apartado final de Tally, diseñada con estilos limpios y un script sencillo para que el usuario pueda responder y obtener un diagnóstico inmediato sobre el nivel de fricción en sus ventas por WhatsApp.
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -188,92 +185,6 @@ Aquí tienes el código manteniendo intacta toda tu estructura, estilos y elemen
             margin-top: 60px;
             border: 2px dashed #cbd5e1;
         }
-
-        /* --- NUEVOS ESTILOS PARA DIAGNÓSTICO --- */
-        .diagnostic-container {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 60px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .diagnostic-question {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .diagnostic-question p {
-            margin: 0 0 15px 0;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        .diagnostic-options {
-            display: flex;
-            gap: 15px;
-        }
-
-        .diagnostic-options label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            background: #f1f5f9;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .diagnostic-options input { display: none; }
-
-        .diagnostic-options input:checked + label {
-            background: var(--accent-blue);
-            color: white;
-        }
-
-        .btn-diagnostic {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 25px auto 0;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-diagnostic:hover { background: var(--accent-blue); }
-
-        .diagnostic-result {
-            display: none;
-            margin-top: 25px;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: bold;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .result-high { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-        .result-medium { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-        .result-low { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
@@ -300,6 +211,7 @@ Aquí tienes el código manteniendo intacta toda tu estructura, estilos y elemen
             </div>
         </div>
 
+        <!-- Nueva Imagen: Pasos de Compra -->
         <img src="pasoscompra.jpg" alt="Pasos de compra" class="full-width-img">
 
         <div class="section-title">
@@ -357,52 +269,10 @@ Aquí tienes el código manteniendo intacta toda tu estructura, estilos y elemen
                 </div>
         </div>
 
+        <!-- Nueva Imagen: Preguntas Frecuentes -->
         <img src="preguntasfrecuentes.jpg" alt="Preguntas frecuentes" class="full-width-img">  
 
-        <div class="diagnostic-container">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h3 style="color: var(--primary-blue); font-size: 24px; margin: 0 0 10px 0;">¿Qué tan eficiente es tu WhatsApp actual?</h3>
-                <p style="margin: 0; color: #64748b;">Responde estas 3 preguntas para medir el nivel de fricción en tus ventas.</p>
-            </div>
-
-            <div class="diagnostic-question">
-                <p>1. ¿Cuánto tiempo pasas al día enviando fotos, precios o datos de pago de forma manual?</p>
-                <div class="diagnostic-options">
-                    <input type="radio" name="q1" id="q1_a" value="2">
-                    <label for="q1_a">Más de 2 horas</label>
-                    
-                    <input type="radio" name="q1" id="q1_b" value="1">
-                    <label for="q1_b">Menos de 2 horas</label>
-                </div>
-            </div>
-
-            <div class="diagnostic-question">
-                <p>2. Cuando un cliente te escribe, ¿suele dejar la conversación a medias tras pedir el precio?</p>
-                <div class="diagnostic-options">
-                    <input type="radio" name="q2" id="q2_a" value="2">
-                    <label for="q2_a">Sí, pasa seguido</label>
-                    
-                    <input type="radio" name="q2" id="q2_b" value="1">
-                    <label for="q2_b">Rara vez ocurre</label>
-                </div>
-            </div>
-
-            <div class="diagnostic-question">
-                <p>3. ¿Tienes tus productos organizados en un solo enlace accesible para el cliente?</p>
-                <div class="diagnostic-options">
-                    <input type="radio" name="q3" id="q3_a" value="2">
-                    <label for="q3_a">No, uso PDFs/fotos</label>
-                    
-                    <input type="radio" name="q3" id="q3_b" value="1">
-                    <label for="q3_b">Sí, ya tengo un link</label>
-                </div>
-            </div>
-
-            <button class="btn-diagnostic" onclick="calcularDiagnostico()">Obtener Diagnóstico</button>
-
-            <div id="diagnostic-result" class="diagnostic-result"></div>
-        </div>
-
+        <!-- Nuevo Apartado: Elegir mi VentaLista -->
         <div class="tally-section">
             <h3>¿No sabes por dónde empezar?</h3>
             <p>Te ayudamos a definir tu VentaLista en 2 minutos.</p>
@@ -415,38 +285,6 @@ Aquí tienes el código manteniendo intacta toda tu estructura, estilos y elemen
             <a href="https://wa.me/51928644516?text=Hola,%20estoy%20listo%20para%20empezar%20con%20VentaLista" class="btn-main" style="background:var(--success-green)">Activar mi VentaLista</a>
         </div>
     </div>
-
-    <script>
-        function calcularDiagnostico() {
-            const q1 = document.querySelector('input[name="q1"]:checked');
-            const q2 = document.querySelector('input[name="q2"]:checked');
-            const q3 = document.querySelector('input[name="q3"]:checked');
-
-            const resultDiv = document.getElementById('diagnostic-result');
-
-            if (!q1 || !q2 || !q3) {
-                resultDiv.className = "diagnostic-result result-medium";
-                resultDiv.style.display = "block";
-                resultDiv.innerHTML = "Por favor, responde todas las preguntas para calcular tu diagnóstico.";
-                return;
-            }
-
-            const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value);
-            resultDiv.style.display = "block";
-
-            if (score >= 5) {
-                resultDiv.className = "diagnostic-result result-high";
-                resultDiv.innerHTML = "🚨 Fricción Alta: Estás perdiendo tiempo y ventas filtrando clientes manualmente. Necesitas automatizar el flujo de información con VentaLista urgente.";
-            } else if (score === 4) {
-                resultDiv.className = "diagnostic-result result-medium";
-                resultDiv.innerHTML = "⚠️ Fricción Moderada: Tu proceso funciona pero tiene baches donde los clientes se pierden. Un enlace optimizado elevará tu conversión.";
-            } else {
-                resultDiv.className = "diagnostic-result result-low";
-                resultDiv.innerHTML = "✅ Fricción Baja: Tu flujo es ordenado, pero optimizarlo con un cierre automatizado directo a WhatsApp incrementará tu ticket promedio.";
-            }
-        }
-    </script>
 </body>
 </html>
-
 ```
