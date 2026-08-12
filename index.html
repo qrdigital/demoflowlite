@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentaLista | Tu negocio así</title>
-    <!-- Favicon actualizado -->
     <link rel="icon" type="image/jpeg" href="faviconventalista.png">
+    
+    <!-- Importación de fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --negro: #111;
-            --dorado: #c19a6b;
-            --gris-fondo: #f4f4f4;
+            --negro: #0d0d0d;
+            --dorado: #D4AF37;
+            --dorado-hover: #b8972e;
+            --gris-fondo: #f5f6f8;
             --whatsapp: #10b981;
-            --texto-suave: #666;
+            --whatsapp-hover: #0d9668;
+            --texto-suave: #64748b;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -21,43 +29,44 @@
             font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             background: var(--gris-fondo);
-            color: #222;
+            color: #1e293b;
             line-height: 1.5;
         }
 
         .container {
             max-width: 480px;
             margin: auto;
-            padding: 15px;
+            padding: 16px;
         }
 
         /* HEADER */
         header {
             background: var(--negro);
             color: white;
-            padding: 35px 15px;
-            border-radius: 12px;
+            padding: 32px 18px;
+            border-radius: 16px;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         header h1 {
-            font-size: 1.7rem;
-            margin: 0 0 25px 0;
+            font-size: 1.75rem;
+            margin: 0 0 16px 0;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: -0.8px;
         }
 
-        /* CONTENEDOR OPTIMIZADO PARA FORMATO VERTICAL TIKTOK (9:16) */
         .video-container {
             width: 100%;
-            max-width: 320px;
+            max-width: 310px;
             aspect-ratio: 9 / 16;
             margin: 20px auto 0 auto;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
             background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .video-container video {
@@ -70,124 +79,151 @@
         /* SECCIONES */
         .section {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 15px;
+            padding: 24px 20px;
+            border-radius: 16px;
+            margin-top: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
         }
 
         .section h2 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            letter-spacing: 1.2px;
+            margin-top: 0;
+            margin-bottom: 18px;
             color: var(--texto-suave);
             font-weight: 800;
         }
 
-        /* PASOS PROFESIONALES */
+        /* BENEFICIOS OPTIMIZADOS */
+        .benefit-list { display: grid; gap: 10px; }
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--dorado);
+            color: #000;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        /* PASOS */
         .step-list { display: grid; gap: 10px; }
         .step-item {
             display: flex;
             align-items: center;
             background: #fff;
-            border: 1px solid #eee;
-            padding: 15px;
+            border: 1px solid #e2e8f0;
+            padding: 14px 16px;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
         }
 
         .step-item::before {
             content: '✓';
-            margin-right: 15px;
+            margin-right: 12px;
             color: var(--dorado);
             font-weight: 900;
-        }
-
-        /* BENEFICIOS LIMPIOS */
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
             font-size: 1.1rem;
-            font-weight: 600;
         }
 
-        .benefit-item::before {
-            content: '•';
-            color: var(--dorado);
-            font-size: 2rem;
-            margin-right: 15px;
-            line-height: 0;
+        /* DIAGNÓSTICO TOUCH (SIN SELECT) */
+        .quiz-intro {
+            font-size: 0.9rem;
+            color: var(--texto-suave);
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
-        /* ESTILOS DEL DIAGNÓSTICO INTERACTIVO */
         .question-card {
             display: none;
-            background-color: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 10px;
         }
 
         .question-card.active {
             display: block;
-            animation: fadeIn 0.3s ease-out;
+            animation: fadeIn 0.25s ease-out;
         }
 
         .question-card h3 {
-            font-size: 0.95rem;
-            margin: 0 0 12px 0;
+            font-size: 1rem;
+            margin: 0 0 14px 0;
             color: var(--negro);
-            font-weight: 700;
+            font-weight: 800;
             text-align: left;
         }
 
-        .option-select {
+        .options-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .opt-btn {
             width: 100%;
-            padding: 12px;
+            text-align: left;
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
             font-size: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            background-color: #ffffff;
-            color: #222;
-            outline: none;
-            cursor: pointer;
             font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
         }
 
-        .option-select:focus {
+        .opt-btn:active {
+            background: #f1f5f9;
             border-color: var(--dorado);
+            transform: scale(0.99);
         }
 
+        /* RESULTADOS */
         .result-container {
             display: none;
-            background-color: #fcf9f5;
+            background-color: #fffdfa;
             border: 2px solid var(--dorado);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 10px;
-            animation: fadeIn 0.4s ease-in-out;
+            border-radius: 12px;
+            padding: 18px;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
         .result-rec {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
-            color: var(--dorado);
-            margin-bottom: 8px;
+            color: #b8860b;
+            margin-bottom: 12px;
             text-transform: uppercase;
         }
 
         .tool-box {
             background: #ffffff;
-            border: 1px solid #eee;
+            border: 1px solid #f1f5f9;
             border-left: 4px solid var(--dorado);
-            padding: 8px 12px;
+            padding: 10px 12px;
             margin-bottom: 8px;
-            border-radius: 0 6px 6px 0;
+            border-radius: 0 8px 8px 0;
             font-size: 0.85rem;
             text-align: left;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
         .tool-box strong {
@@ -208,50 +244,64 @@
             color: var(--texto-suave);
             text-decoration: underline;
             font-size: 0.8rem;
-            margin: 12px auto 0 auto;
+            margin: 14px auto 0 auto;
             cursor: pointer;
             font-weight: 600;
         }
 
-        /* BLOQUE DE INVERSIÓN */
+        /* INVERSIÓN & CTA */
         .price-box {
             text-align: center;
-            padding: 10px 0;
+            padding: 5px 0;
         }
-        .price-title { font-size: 1.4rem; font-weight: 800; color: var(--negro); margin-bottom: 15px; }
-        .price-value { font-size: 3.5rem; font-weight: 900; margin: 5px 0; color: var(--negro); }
-        .price-value span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); }
-        .price-description { font-size: 0.95rem; color: var(--texto-suave); margin: 15px 0; }
-        .price-highlight { color: #10b981; font-weight: 700; margin-bottom: 25px; font-size: 0.95rem; }
+        .price-title { font-size: 1.3rem; font-weight: 800; color: var(--negro); margin-bottom: 10px; }
+        .price-value { font-size: 3.2rem; font-weight: 900; margin: 0; color: var(--negro); letter-spacing: -1px; }
+        .price-value span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); letter-spacing: 0; }
+        .price-description { font-size: 0.9rem; color: var(--texto-suave); margin: 10px 0; }
+        .price-highlight { color: var(--whatsapp); font-weight: 700; margin-bottom: 20px; font-size: 0.9rem; }
 
-        /* CTA */
         .btn-cta {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: var(--whatsapp);
             color: white;
             text-align: center;
-            padding: 22px;
-            border-radius: 15px;
+            padding: 16px 20px;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: 900;
-            font-size: 1.2rem;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.28);
+            transition: background 0.2s;
         }
 
-        .btn-cta:active { transform: scale(0.97); }
+        .btn-cta-main {
+            font-weight: 900;
+            font-size: 1.15rem;
+            line-height: 1.2;
+        }
+
+        .btn-cta-sub {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .btn-cta:active { transform: scale(0.98); background: var(--whatsapp-hover); }
 
         .footer {
             text-align: center;
             font-size: 0.75rem;
-            color: #aaa;
-            margin-top: 40px;
-            padding-bottom: 30px;
+            color: #94a3b8;
+            margin-top: 35px;
+            padding-bottom: 25px;
             font-weight: 600;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -259,18 +309,19 @@
 
 <div class="container">
 
+    <!-- HEADER -->
     <header>
         <h1>
-            <span>Tus clientes no deberían preguntar.</span>
+            <span>Tus clientes no deberían preguntar.</span><br>
             <span style="color: var(--dorado);">Deberían comprar.</span>
         </h1>
 
         <p style="
-            font-size: 1.05rem;
-            line-height: 1.5;
+            font-size: 0.98rem;
+            line-height: 1.45;
             margin: 0 auto 20px auto;
-            max-width: 320px;
-            color: rgba(255,255,255,0.9);
+            max-width: 330px;
+            color: rgba(255,255,255,0.88);
             font-weight: 500;
         ">
             Un solo enlace para que tus clientes entiendan, elijan y pidan por WhatsApp.
@@ -284,14 +335,18 @@
         </div>
     </header>
 
+    <!-- BENEFICIOS -->
     <div class="section">
-        <div class="benefit-item">Menos preguntas repetitivas</div>
-        <div class="benefit-item">Más pedidos claros</div>
-        <div class="benefit-item">Enlace ideal para IG, FB y TikTok</div>
-        <div class="benefit-item">Actualizaciones cuando las necesites</div>
-        <div class="benefit-item">Listo en 24 horas</div>
+        <div class="benefit-list">
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Menos preguntas repetitivas</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Más pedidos claros</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Enlace ideal para IG, FB y TikTok</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Actualizaciones cuando las necesites</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Listo en 24 horas</div>
+        </div>
     </div>
 
+    <!-- PASOS -->
     <div class="section">
         <h2>ASÍ COMPRA TU CLIENTE:</h2>
         <div class="step-list">
@@ -302,89 +357,76 @@
         </div>
     </div>
 
-    <!-- SECCIÓN DE DIAGNÓSTICO INCORPORADA -->
+    <!-- DIAGNÓSTICO INTERACTIVO TOUCH (2 PASOS) -->
     <div class="section" style="text-align: center;">
-        <h2>DIAGNÓSTICO DE TU SEGMENTO</h2>
+        <h2>DIAGNÓSTICO RÁPIDO (10 SEG)</h2>
+        <p class="quiz-intro" id="quiz-intro-txt">Descubre la estructura exacta que necesita tu negocio antes de solicitarlo.</p>
         
         <div id="quiz-box">
             <!-- Pregunta 1 -->
             <div class="question-card active" id="q1">
-                <h3>1. ¿Cuál es el tipo de oferta principal de tu negocio?</h3>
-                <select class="option-select" onchange="handleSelect(1, this.value)">
-                    <option value="" disabled selected>Selecciona una opción...</option>
-                    <option value="directa">Vendo productos físicos estándar, stock fijo o comida.</option>
-                    <option value="informada">Vendo productos con variantes (tallas, colores o fichas).</option>
-                    <option value="asistida">Vendo servicios a medida, asesorías o personalizables.</option>
-                    <option value="brochure">Ofrezco soluciones B2B o corporativas de alto valor.</option>
-                </select>
+                <h3>1. ¿Qué tipo de oferta vende tu negocio principalmente?</h3>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="handleTouch(1, 'directa')">📦 Productos físicos estándar o catálogo fijo</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'informada')">👕 Productos con tallas, colores o variantes</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'asistida')">🛠️ Servicios a medida, asesorías o cotizaciones</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'brochure')">🏢 Soluciones B2B o servicios corporativos</button>
+                </div>
             </div>
 
             <!-- Pregunta 2 -->
             <div class="question-card" id="q2">
-                <h3>2. ¿Cuál es el mayor cuello de botella en tu WhatsApp?</h3>
-                <select class="option-select" onchange="handleSelect(2, this.value)">
-                    <option value="" disabled selected>Selecciona una opción...</option>
-                    <option value="directa">Demoro demasiado enviando precios y fotos individuales.</option>
-                    <option value="informada">Invierto horas respondiendo sobre medidas, stock o cambios.</option>
-                    <option value="asistida">Pierdo tiempo cotizando a personas sin presupuesto real.</option>
-                    <option value="brochure">Tengo que enviar PDFs pesados que los clientes no leen.</option>
-                </select>
-            </div>
-
-            <!-- Pregunta 3 -->
-            <div class="question-card" id="q3">
-                <h3>3. ¿Cómo requiere tu negocio cerrar la venta?</h3>
-                <select class="option-select" onchange="handleSelect(3, this.value)">
-                    <option value="" disabled selected>Selecciona una opción...</option>
-                    <option value="directa">El cliente elige, pide directo y envía el voucher rápido.</option>
-                    <option value="informada">El cliente necesita confirmar variantes y stock antes de pagar.</option>
-                    <option value="asistida">El prospecto requiere evaluar su caso para darle precio.</option>
-                    <option value="brochure">Se necesita agendar reunión formal o validar datos RUC.</option>
-                </select>
+                <h3>2. ¿Cuál es tu mayor molestia hoy en WhatsApp?</h3>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="handleTouch(2, 'directa')">Demoro mucho enviando fotos y precios uno por uno</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'informada')">Pierdo tiempo respondiendo sobre medidas o stock disponible</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'asistida')">Atiendo a personas curiosas que no tienen presupuesto real</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'brochure')">Envío PDFs pesados que la mayoría de clientes no revisa</button>
+                </div>
             </div>
         </div>
 
-        <!-- Resultados e inyección de herramientas -->
+        <!-- Resultados -->
         <div class="result-container" id="result-box">
             <div class="result-rec" id="rec-title">Formato Recomendado</div>
-            <div style="font-size:0.8rem; font-weight:800; color:var(--negro); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Módulos de reducción de fricción:</div>
+            <div style="font-size:0.75rem; font-weight:800; color:var(--negro); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Módulos sugeridos para tu flujo:</div>
             <div id="tools-list"></div>
             <button class="reset-btn" onclick="resetQuiz()">Volver a realizar el diagnóstico</button>
         </div>
     </div>
 
-    <!-- SECCIÓN DE INVERSIÓN ORIGINAL (EQUIVALENTE A LA IMAGEN image_8e1598.png) -->
+    <!-- BLOQUE DE PRECIO Y CTA -->
     <div class="section" style="text-align: center;">
         <div class="price-box">
             <div class="price-title">Empieza a cerrar ventas</div>
             <div class="price-value">S/ 300 <span>/Anual</span></div>
-            <div class="price-description">Tú envías la información, nosotros hacemos el resto.</div>
+            <div class="price-description">Tú nos envías tu información, nosotros configuramos el sistema.</div>
             <div class="price-highlight">Creamos tu VentaLista y la dejamos funcionando.</div>
         </div>
         
-        <!-- Enlace dinámico modificado automáticamente por el JavaScript del Test -->
-        <a href="https://wa.me/51913642644?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
-            Solicitar VentaLista vía WhatsApp
+        <a href="https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
+            <span class="btn-cta-main">Solicitar VentaLista vía WhatsApp</span>
+            <span class="btn-cta-sub">Respuesta inmediata • Activación en 24h</span>
         </a>
     </div>
 
-    <div class="footer">&copy; 2025 VentaLista. Infraestructura y diseño comercial.</div>
+    <div class="footer">&copy; 2026 VentaLista. Infraestructura y diseño comercial.</div>
 
 </div>
 
 <script>
-    // Lógica secuencial del test de 3 preguntas sin recargas externas
     let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
 
-    function handleSelect(questionNum, value) {
+    function handleTouch(questionNum, value) {
         scores[value]++;
         
         document.getElementById(`q${questionNum}`).classList.remove('active');
         
-        if(questionNum < 3) {
+        if(questionNum < 2) {
             document.getElementById(`q${questionNum + 1}`).classList.add('active');
         } else {
             document.getElementById('quiz-box').style.display = 'none';
+            document.getElementById('quiz-intro-txt').style.display = 'none';
             evaluateDiagnosis();
         }
     }
@@ -395,34 +437,34 @@
         const outputData = {
             'directa': {
                 name: "Recomendado: Formato Compra Directa",
-                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Compra Directa. Quiero activar mi VentaLista por S/ 300.",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Compra Directa. Quiero activar mi VentaLista por S/ 300.",
                 tools: [
-                    { t: "Carrito Plano Todo-En-Uno", d: "Selección ágil de catálogo y cálculo de totales en una interfaz compacta." },
-                    { t: "Campos Express de Despacho", d: "Selectores nativos para definir entrega rápida o recojo sin salir del enlace." }
+                    { t: "Catálogo Expreso", d: "Selección ágil de productos y cálculo automático en interfaz plana." },
+                    { t: "Campos de Despacho", d: "Elección inmediata entre entrega a domicilio o recojo." }
                 ]
             },
             'informada': {
                 name: "Recomendado: Formato Compra Informada",
-                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Compra Informada. Quiero activar mi VentaLista por S/ 300.",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Compra Informada. Quiero activar mi VentaLista por S/ 300.",
                 tools: [
-                    { t: "Selectores de Atributos Fijos", d: "Menús obligatorios para definir Tallas, Colores o Modelos antes de enviar el pedido." },
-                    { t: "Acordeones Técnicos Ligeros", d: "Bloques dinámicos plegables para guías de medidas o tablas de compatibilidad." }
+                    { t: "Selectores de Atributos", d: "Campos obligatorios de Tallas, Colores o Variantes antes de enviar el pedido." },
+                    { t: "Fichas Plegables", d: "Bloques para guías de medidas, materiales o especificaciones." }
                 ]
             },
             'asistida': {
                 name: "Recomendado: Formato Venta Asistida",
-                message: "Hola FlowLite, completé mi diagnóstico. Mi negocio califica para la estructura de Venta Asistida. Quiero activar mi VentaLista por S/ 300.",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Venta Asistida. Quiero activar mi VentaLista por S/ 300.",
                 tools: [
-                    { t: "Formulario de Filtro Inicial", d: "Campos de calificación rápida para capturar necesidades específicas del cliente." },
-                    { t: "Inyector de Intención Comercial", d: "Estructura que envía los requerimientos exactos directo al asesor de atención." }
+                    { t: "Filtro de Calificación", d: "Captura de requerimientos exactos previo al contacto." },
+                    { t: "Inyector de Intención", d: "Mensaje estructurado directo al asesor para cotizar más rápido." }
                 ]
             },
             'brochure': {
                 name: "Recomendado: Brochure Digital B2B",
-                message: "Hola FlowLite, completé mi diagnóstico. Requerimos la estructura de Brochure Digital Corporativo. Quiero activarlo por S/ 300.",
+                message: "Hola, completé el diagnóstico. Requerimos la estructura de Brochure Digital B2B. Quiero activarlo por S/ 300.",
                 tools: [
-                    { t: "Módulo de Prestigio Rígido", d: "Despliegue visual ultra-rápido para hasta 10 hitos corporativos o casos de éxito." },
-                    { t: "Filtro de Datos RUC / Empresa", d: "Captura forzosa de datos organizacionales para agendar leads altamente calificados." }
+                    { t: "Módulo de Prestigio Visual", d: "Presentación ejecutiva de catálogo y propuesta de valor." },
+                    { t: "Filtro RUC / Datos Empresa", d: "Captura de datos organizacionales para filtrar leads corporativos." }
                 ]
             }
         };
@@ -439,7 +481,7 @@
             toolsContainer.appendChild(div);
         });
 
-        // Altera el comportamiento del botón de WhatsApp según la necesidad del segmento analizado
+        // Actualización del link de WhatsApp al consolidado 51920832884
         const cta = document.getElementById('main-cta');
         cta.href = `https://wa.me/51920832884?text=${encodeURIComponent(selectedResult.message)}`;
         
@@ -449,21 +491,15 @@
     function resetQuiz() {
         scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
         document.getElementById('result-box').style.display = 'none';
-        
-        const selects = document.querySelectorAll('.option-select');
-        selects.forEach(sel => sel.value = "");
+        document.getElementById('quiz-intro-txt').style.display = 'block';
 
         document.getElementById('quiz-box').style.display = 'block';
         document.getElementById('q1').classList.add('active');
         document.getElementById('q2').classList.remove('active');
-        document.getElementById('q3').classList.remove('active');
         
-        // Restablece el mensaje estándar original
-        document.getElementById('main-cta').href = "https://wa.me/51913642644?text=Hola,%20quiero%20información/solicitar%20VentaLista";
+        document.getElementById('main-cta').href = "https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista";
     }
 </script>
 
 </body>
 </html>
-
-```
