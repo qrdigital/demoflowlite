@@ -68,6 +68,7 @@
             width: 29%;
             height: 12.5%;
             background: transparent;
+            border: none;
             border-radius: 25px;
             cursor: pointer;
             z-index: 10;
@@ -77,6 +78,57 @@
         .btn-overlay-demo:active {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(0.97);
+        }
+
+        /* ESTILOS DEL MODAL DE VIDEO */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close-video-btn {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10000;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* SECCIONES */
@@ -315,9 +367,20 @@
     <header>
         <div class="header-banner">
             <img src="headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
-            <a href="https://qrdigital.github.io/demoflowlite/video1.mp4" target="_blank" class="btn-overlay-demo" title="Ver demo"></a>
+            <button type="button" onclick="openVideoModal()" class="btn-overlay-demo" title="Ver demo"></button>
         </div>
     </header>
+
+    <!-- MODAL DE VIDEO -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button type="button" class="close-video-btn" onclick="closeVideoModal()">&times;</button>
+            <video id="demoVideo" controls playsinline>
+                <source src="video1.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
+            </video>
+        </div>
+    </div>
 
     <!-- BENEFICIOS -->
     <div class="section">
@@ -397,6 +460,30 @@
 </div>
 
 <script>
+    // Lógica del Video Modal
+    function openVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('demoVideo');
+        modal.style.display = 'flex';
+        video.currentTime = 0;
+        video.play();
+    }
+
+    function closeVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('demoVideo');
+        video.pause();
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('videoModal');
+        if (event.target === modal) {
+            closeVideoModal();
+        }
+    };
+
+    // Lógica del Diagnóstico
     let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
 
     function handleTouch(questionNum, value) {
