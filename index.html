@@ -39,41 +39,44 @@
             padding: 16px;
         }
 
-        /* HEADER */
+        /* HEADER CON IMAGEN Y BOTÓN SUPERPUESTO */
         header {
-            background: var(--negro);
-            color: white;
-            padding: 32px 18px;
+            background: none;
+            padding: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        header h1 {
-            font-size: 1.75rem;
-            margin: 0 0 16px 0;
-            font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: -0.8px;
-        }
-
-        .video-container {
-            width: 100%;
-            max-width: 310px;
-            aspect-ratio: 9 / 16;
-            margin: 20px auto 0 auto;
-            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .video-container video {
+        .header-banner {
+            position: relative;
             width: 100%;
-            height: 100%;
+            line-height: 0;
+        }
+
+        .header-banner img {
+            width: 100%;
+            height: auto;
             display: block;
-            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .btn-overlay-demo {
+            position: absolute;
+            top: 68.5%;
+            left: 44.5%;
+            width: 29%;
+            height: 12.5%;
+            background: transparent;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-overlay-demo:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(0.97);
         }
 
         /* SECCIONES */
@@ -145,7 +148,7 @@
             font-size: 1.1rem;
         }
 
-        /* DIAGNÓSTICO TOUCH (SIN SELECT) */
+        /* DIAGNÓSTICO TOUCH */
         .quiz-intro {
             font-size: 0.9rem;
             color: var(--texto-suave);
@@ -258,7 +261,6 @@
         .price-value { font-size: 3.2rem; font-weight: 900; margin: 0; color: var(--negro); letter-spacing: -1px; }
         .price-value span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); letter-spacing: 0; }
         .price-description { font-size: 0.9rem; color: var(--texto-suave); margin: 10px 0; }
-        .price-highlight { color: var(--whatsapp); font-weight: 700; margin-bottom: 20px; font-size: 0.9rem; }
 
         .btn-cta {
             display: flex;
@@ -311,27 +313,9 @@
 
     <!-- HEADER -->
     <header>
-        <h1>
-            <span>Tus clientes no deberían preguntar.</span><br>
-            <span style="color: var(--dorado);">Deberían comprar.</span>
-        </h1>
-
-        <p style="
-            font-size: 0.98rem;
-            line-height: 1.45;
-            margin: 0 auto 20px auto;
-            max-width: 330px;
-            color: rgba(255,255,255,0.88);
-            font-weight: 500;
-        ">
-            Un solo enlace para que tus clientes entiendan, elijan y pidan por WhatsApp.
-        </p>
-        
-        <div class="video-container">
-            <video controls playsinline preload="metadata">
-                <source src="https://qrdigital.github.io/demoflowlite/video1.mp4" type="video/mp4">
-                Tu navegador no soporta la reproducción de video.
-            </video>
+        <div class="header-banner">
+            <img src="headinformacion.jpg" alt="VentaLista - Tu sistema de pedidos">
+            <a href="https://qrdigital.github.io/demoflowlite/video1.mp4" target="_blank" class="btn-overlay-demo" title="Ver demo"></a>
         </div>
     </header>
 
@@ -401,7 +385,7 @@
             <div class="price-title">Empieza a cerrar ventas</div>
             <div class="price-value">S/ 300 <span>/Anual</span></div>
             <div class="price-description">Tú nos envías tu información, nosotros configuramos el sistema.</div>
-                   </div>
+        </div>
         
         <a href="https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
             <span class="btn-cta-main">Solicitar VentaLista vía WhatsApp</span>
@@ -480,7 +464,6 @@
             toolsContainer.appendChild(div);
         });
 
-        // Actualización del link de WhatsApp al consolidado 51920832884
         const cta = document.getElementById('main-cta');
         cta.href = `https://wa.me/51920832884?text=${encodeURIComponent(selectedResult.message)}`;
         
