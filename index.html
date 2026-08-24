@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentaLista | Tu negocio así</title>
-    <link rel="icon" type="image/jpeg" href="faviconventalista.png">
+    <link rel="icon" type="image/jpeg" href="./faviconventalista.png">
     
     <!-- Importación de fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,7 +151,7 @@
             font-weight: 800;
         }
 
-        /* BENEFICIOS OPTIMIZADOS */
+        /* BENEFICIOS */
         .benefit-list { display: grid; gap: 10px; }
         .benefit-item {
             display: flex;
@@ -200,7 +200,7 @@
             font-size: 1.1rem;
         }
 
-        /* DIAGNÓSTICO TOUCH */
+        /* DIAGNÓSTICO */
         .quiz-intro {
             font-size: 0.9rem;
             color: var(--texto-suave);
@@ -366,7 +366,7 @@
     <!-- HEADER -->
     <header>
         <div class="header-banner">
-            <img src="headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
+            <img src="./headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
             <button type="button" onclick="openVideoModal()" class="btn-overlay-demo" title="Ver demo"></button>
         </div>
     </header>
@@ -376,7 +376,7 @@
         <div class="video-modal-content">
             <button type="button" class="close-video-btn" onclick="closeVideoModal()">&times;</button>
             <video id="demoVideo" controls playsinline>
-                <source src="video1.mp4" type="video/mp4">
+                <source src="./video1.mp4" type="video/mp4">
                 Tu navegador no soporta el formato de video.
             </video>
         </div>
@@ -389,7 +389,7 @@
             <div class="benefit-item"><span class="benefit-icon">✓</span> Más pedidos claros</div>
             <div class="benefit-item"><span class="benefit-icon">✓</span> Enlace ideal para IG, FB y TikTok</div>
             <div class="benefit-item"><span class="benefit-icon">✓</span> Actualizaciones cuando las necesites</div>
-            </div>
+        </div>
     </div>
 
     <!-- PASOS -->
@@ -403,7 +403,7 @@
         </div>
     </div>
 
-    <!-- DIAGNÓSTICO INTERACTIVO TOUCH (2 PASOS) -->
+    <!-- DIAGNÓSTICO INTERACTIVO -->
     <div class="section" style="text-align: center;">
         <h2>DIAGNÓSTICO RÁPIDO (10 SEG)</h2>
         <p class="quiz-intro" id="quiz-intro-txt">Descubre la estructura exacta que necesita tu negocio antes de solicitarlo.</p>
@@ -441,7 +441,7 @@
         </div>
     </div>
 
-    <!-- BLOQUE DE PRECIO Y CTA -->
+    <!-- PRECIO Y CTA -->
     <div class="section" style="text-align: center;">
         <div class="price-box">
             <div class="price-title">Empieza a cerrar ventas</div>
@@ -476,6 +476,7 @@
         modal.style.display = 'none';
     }
 
+    // Cierra el modal si se hace clic fuera del contenido del video
     window.onclick = function(event) {
         const modal = document.getElementById('videoModal');
         if (event.target === modal) {
