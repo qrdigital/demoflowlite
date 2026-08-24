@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentaLista | Tu negocio así</title>
-    <link rel="icon" type="image/jpeg" href="./faviconventalista.png">
+    <!-- Ruta absoluta corregida -->
+    <link rel="icon" type="image/jpeg" href="https://qrdigital.github.io/demoflowlite/faviconventalista.png">
     
     <!-- Importación de fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -366,7 +367,8 @@
     <!-- HEADER -->
     <header>
         <div class="header-banner">
-            <img src="./headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
+            <!-- Ruta absoluta corregida -->
+            <img src="https://qrdigital.github.io/demoflowlite/headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
             <button type="button" onclick="openVideoModal()" class="btn-overlay-demo" title="Ver demo"></button>
         </div>
     </header>
@@ -375,8 +377,9 @@
     <div id="videoModal" class="video-modal">
         <div class="video-modal-content">
             <button type="button" class="close-video-btn" onclick="closeVideoModal()">&times;</button>
-            <video id="demoVideo" controls playsinline>
-                <source src="./video1.mp4" type="video/mp4">
+            <!-- Atributos para prevenir la apertura en ventana nativa móvil -->
+            <video id="demoVideo" controls playsinline webkit-playsinline preload="metadata">
+                <source src="https://qrdigital.github.io/demoflowlite/video1.mp4" type="video/mp4">
                 Tu navegador no soporta el formato de video.
             </video>
         </div>
@@ -466,7 +469,9 @@
         const video = document.getElementById('demoVideo');
         modal.style.display = 'flex';
         video.currentTime = 0;
-        video.play();
+        video.play().catch(function(error) {
+            console.log("Autoplay bloqueado o interactuado:", error);
+        });
     }
 
     function closeVideoModal() {
@@ -477,12 +482,12 @@
     }
 
     // Cierra el modal si se hace clic fuera del contenido del video
-    window.onclick = function(event) {
+    window.addEventListener('click', function(event) {
         const modal = document.getElementById('videoModal');
         if (event.target === modal) {
             closeVideoModal();
         }
-    };
+    });
 
     // Lógica del Diagnóstico
     let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
