@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VentaLista | Tu negocio así</title>
-    <!-- Ruta absoluta corregida -->
     <link rel="icon" type="image/jpeg" href="https://qrdigital.github.io/demoflowlite/faviconventalista.png">
     
-    <!-- Importación de fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,8 +13,9 @@
     <style>
         :root {
             --negro: #0d0d0d;
-            --dorado: #D4AF37;
-            --dorado-hover: #b8972e;
+            --verde-whatsapp: #10b981;
+            --verde-hover: #0d9668;
+            --verde-suave: #e6f7f2;
             --gris-fondo: #f5f6f8;
             --texto-suave: #64748b;
             --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -166,8 +165,8 @@
         .benefit-icon {
             width: 24px;
             height: 24px;
-            background: var(--dorado);
-            color: #000;
+            background: var(--verde-suave);
+            color: var(--verde-hover);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
@@ -194,8 +193,8 @@
         .step-number {
             width: 24px;
             height: 24px;
-            background: var(--dorado);
-            color: #000;
+            background: var(--verde-suave);
+            color: var(--verde-hover);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
@@ -206,7 +205,7 @@
             flex-shrink: 0;
         }
 
-        /* BOTÓN DE DEMO CENTRADO */
+        /* BOTÓN DE DEMO NEGRO NEGRO/SOBRIO */
         .demo-btn-wrapper {
             text-align: center;
             margin-bottom: 18px;
@@ -216,22 +215,22 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--dorado);
-            color: #000;
-            font-weight: 900;
-            font-size: 0.95rem;
+            background: var(--negro);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 12px 28px;
             border-radius: 25px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 12px rgba(13, 13, 13, 0.2);
             transition: background 0.2s, transform 0.1s;
         }
 
         .btn-demo-action:hover {
-            background: var(--dorado-hover);
+            background: #262626;
         }
 
         .btn-demo-action:active {
@@ -285,15 +284,15 @@
 
         .opt-btn:active {
             background: #f1f5f9;
-            border-color: var(--dorado);
+            border-color: var(--verde-whatsapp);
             transform: scale(0.99);
         }
 
         /* RESULTADOS */
         .result-container {
             display: none;
-            background-color: #fffdfa;
-            border: 2px solid var(--dorado);
+            background-color: #f0fdf4;
+            border: 2px solid var(--verde-whatsapp);
             border-radius: 12px;
             padding: 18px;
             animation: fadeIn 0.3s ease-in-out;
@@ -302,15 +301,15 @@
         .result-rec {
             font-size: 1rem;
             font-weight: 800;
-            color: #b8860b;
+            color: var(--verde-hover);
             margin-bottom: 12px;
             text-transform: uppercase;
         }
 
         .tool-box {
             background: #ffffff;
-            border: 1px solid #f1f5f9;
-            border-left: 4px solid var(--dorado);
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--verde-whatsapp);
             padding: 10px 12px;
             margin-bottom: 8px;
             border-radius: 0 8px 8px 0;
@@ -342,7 +341,7 @@
             font-weight: 600;
         }
 
-        /* INVERSIÓN & CTA */
+        /* INVERSIÓN & CTA VERDE WHATSAPP */
         .price-box {
             text-align: center;
             padding: 5px 0;
@@ -357,13 +356,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: var(--dorado);
-            color: #000;
+            background: var(--verde-whatsapp);
+            color: #ffffff;
             text-align: center;
             padding: 16px 20px;
             border-radius: 14px;
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.28);
             transition: background 0.2s;
         }
 
@@ -375,13 +374,13 @@
 
         .btn-cta-sub {
             font-size: 0.75rem;
-            font-weight: 700;
-            opacity: 0.85;
+            font-weight: 600;
+            opacity: 0.9;
             margin-top: 4px;
         }
 
-        .btn-cta:hover { background: var(--dorado-hover); }
-        .btn-cta:active { transform: scale(0.98); background: var(--dorado-hover); }
+        .btn-cta:hover { background: var(--verde-hover); }
+        .btn-cta:active { transform: scale(0.98); background: var(--verde-hover); }
 
         .footer {
             text-align: center;
@@ -405,7 +404,6 @@
     <!-- HEADER -->
     <header>
         <div class="header-banner">
-            <!-- Ruta absoluta corregida -->
             <img src="https://qrdigital.github.io/demoflowlite/headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
             <button type="button" onclick="openVideoModal()" class="btn-overlay-demo" title="Ver demo"></button>
         </div>
@@ -502,7 +500,6 @@
 </div>
 
 <script>
-    // Lógica del Video Modal
     function openVideoModal() {
         const modal = document.getElementById('videoModal');
         const video = document.getElementById('demoVideo');
@@ -527,7 +524,6 @@
         }
     });
 
-    // Lógica del Diagnóstico
     let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
 
     function handleTouch(questionNum, value) {
