@@ -149,32 +149,18 @@
             font-weight: 800;
         }
 
-        /* BENEFICIOS */
-        .benefit-list { display: grid; gap: 10px; }
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            font-weight: 600;
-            background: #f8fafc;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
+        /* IMAGEN COMPARATIVA SUSTITUTA */
+        .section-img {
+            padding: 0;
+            overflow: hidden;
+            line-height: 0;
         }
 
-        .benefit-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--verde-suave);
-            color: var(--verde-hover);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.85rem;
-            margin-right: 12px;
-            flex-shrink: 0;
+        .section-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
         }
 
         /* PASOS NUMERADOS */
@@ -205,7 +191,7 @@
             flex-shrink: 0;
         }
 
-        /* BOTÓN DE DEMO NEGRO NEGRO/SOBRIO */
+        /* BOTÓN DE DEMO NEGRO/SOBRIO */
         .demo-btn-wrapper {
             text-align: center;
             margin-bottom: 18px;
@@ -420,14 +406,9 @@
         </div>
     </div>
 
-    <!-- BENEFICIOS -->
-    <div class="section">
-        <div class="benefit-list">
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Menos preguntas repetitivas</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Más pedidos claros</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Enlace ideal para IG, FB y TikTok</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Presentación profesional</div>
-        </div>
+    <!-- IMAGEN COMPARATIVA DE VENTALISTA -->
+    <div class="section section-img">
+        <img src="comparativaventalista.jpg" alt="Comparativa VentaLista">
     </div>
 
     <!-- PASOS -->
@@ -491,7 +472,7 @@
         
         <a href="https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
             <span class="btn-cta-main">Solicitar VentaLista vía WhatsApp</span>
-            </a>
+        </a>
     </div>
 
     <div class="footer">&copy; 2026 VentaLista. Infraestructura y diseño comercial.</div>
