@@ -1,236 +1,409 @@
+Aquí tienes el código completo con los ajustes aplicados:
+
+* Se mantuvo intacta la paleta de colores y estilos CSS base.
+* Se implementaron los círculos amarillos numerados (`1`, `2`, `3`, `4`) para la segunda lista (sección de pasos).
+* Se reemplazó el encabezado textualmente por un botón centrado que dice **"VER DEMO"** y abre directamente el modal con el video.
+* Se conservó la estructura, los íconos de check y el formato verde para el botón final de WhatsApp.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VentaLista - Sistema de Pedidos</title>
+    <title>VentaLista | Tu negocio así</title>
+    <!-- Ruta absoluta corregida -->
+    <link rel="icon" type="image/jpeg" href="https://qrdigital.github.io/demoflowlite/faviconventalista.png">
+    
+    <!-- Importación de fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-page: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent-green: #25d366;
-            --accent-green-dark: #128c7e;
-            --border-color: #e2e8f0;
+            --negro: #0d0d0d;
+            --dorado: #D4AF37;
+            --dorado-hover: #b8972e;
+            --gris-fondo: #f5f6f8;
+            --whatsapp: #10b981;
+            --whatsapp-hover: #0d9668;
+            --texto-suave: #64748b;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-page);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            padding: 12px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            background: var(--gris-fondo);
+            color: #1e293b;
+            line-height: 1.5;
         }
 
         .container {
-            width: 100%;
-            max-width: 440px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            max-width: 480px;
+            margin: auto;
+            padding: 16px;
         }
 
-        /* HEADER */
-        .hero-banner {
-            background: #000000;
+        /* HEADER CON IMAGEN Y BOTÓN SUPERPUESTO */
+        header {
+            background: none;
+            padding: 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             border-radius: 16px;
-            padding: 20px 16px;
-            color: #ffffff;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .hero-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 8px;
+        .header-banner {
+            position: relative;
+            width: 100%;
+            line-height: 0;
         }
 
-        .hero-title span {
-            color: var(--accent-green);
+        .header-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
         }
 
-        .hero-sub {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 16px;
+        .btn-overlay-demo {
+            position: absolute;
+            top: 68.5%;
+            left: 44.5%;
+            width: 29%;
+            height: 12.5%;
+            background: transparent;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s, transform 0.1s;
         }
 
-        .btn-demo {
-            display: inline-flex;
+        .btn-overlay-demo:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(0.97);
+        }
+
+        /* ESTILOS DEL MODAL DE VIDEO */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-modal-content video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close-video-btn {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.6);
             color: #fff;
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        /* BLOQUES DE CONTENIDO LIMPIOS */
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            text-align: center;
-        }
-
-        /* LISTA SIN ENCAJONAR */
-        .benefit-list {
+            border: none;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10000;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* SECCIONES */
+        .section {
+            background: white;
+            padding: 24px 20px;
+            border-radius: 16px;
+            margin-top: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .section h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: var(--texto-suave);
+            font-weight: 800;
+        }
+
+        /* BENEFICIOS */
+        .benefit-list { display: grid; gap: 10px; }
         .benefit-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: var(--text-main);
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
         }
 
         .benefit-icon {
             width: 24px;
             height: 24px;
-            background: rgba(37, 211, 102, 0.12);
-            color: var(--accent-green-dark);
+            background: var(--dorado);
+            color: #000;
             border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 0.75rem;
+            font-weight: 900;
+            font-size: 0.85rem;
+            margin-right: 12px;
             flex-shrink: 0;
         }
 
-        /* DIAGNÓSTICO INTERACTIVO */
-        .diag-subtitle {
-            font-size: 0.82rem;
-            color: var(--text-muted);
+        /* PASOS NUMERADOS */
+        .step-list { display: grid; gap: 10px; }
+        .step-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--dorado);
+            color: #000;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        /* BOTÓN DE DEMO CENTRADO */
+        .demo-btn-wrapper {
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .btn-demo-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dorado);
+            color: #000;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-demo-action:hover {
+            background: var(--dorado-hover);
+        }
+
+        .btn-demo-action:active {
+            transform: scale(0.97);
+        }
+
+        /* DIAGNÓSTICO */
+        .quiz-intro {
+            font-size: 0.9rem;
+            color: var(--texto-suave);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .question-card {
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: fadeIn 0.25s ease-out;
+        }
+
+        .question-card h3 {
+            font-size: 1rem;
+            margin: 0 0 14px 0;
+            color: var(--negro);
+            font-weight: 800;
+            text-align: left;
         }
 
         .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            display: grid;
+            gap: 10px;
         }
 
         .opt-btn {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-main);
+            width: 100%;
             text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
-        }
-
-        .opt-btn:hover {
-            border-color: var(--text-main);
-            background: #fff;
-        }
-
-        /* OFERTA Y CTA EJECUTIVO */
-        .price-container {
-            text-align: center;
-        }
-
-        .price-val {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--text-main);
-            line-height: 1;
-            margin: 8px 0 4px;
-        }
-
-        .price-val span {
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
             font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-family: inherit;
         }
 
-        .price-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
+        .opt-btn:active {
+            background: #f1f5f9;
+            border-color: var(--dorado);
+            transform: scale(0.99);
         }
 
-        .btn-cta-pro {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: #0f172a;
-            border: 1.5px solid var(--accent-green);
-            padding: 14px 20px;
+        /* RESULTADOS */
+        .result-container {
+            display: none;
+            background-color: #fffdfa;
+            border: 2px solid var(--dorado);
             border-radius: 12px;
-            text-decoration: none;
-            color: #ffffff;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+            padding: 18px;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .btn-cta-pro svg {
-            width: 26px;
-            height: 26px;
-            fill: var(--accent-green);
-            flex-shrink: 0;
+        .result-rec {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #b8860b;
+            margin-bottom: 12px;
+            text-transform: uppercase;
         }
 
-        .cta-text {
+        .tool-box {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-left: 4px solid var(--dorado);
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            text-align: left;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .tool-box strong {
+            display: block;
+            color: var(--negro);
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .tool-box span {
+            color: var(--texto-suave);
+        }
+
+        .reset-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: var(--texto-suave);
+            text-decoration: underline;
+            font-size: 0.8rem;
+            margin: 14px auto 0 auto;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* INVERSIÓN & CTA */
+        .price-box {
+            text-align: center;
+            padding: 5px 0;
+        }
+        .price-title { font-size: 1.3rem; font-weight: 800; color: var(--negro); margin-bottom: 10px; }
+        .price-value { font-size: 3.2rem; font-weight: 900; margin: 0; color: var(--negro); letter-spacing: -1px; }
+        .price-value span { font-size: 1rem; font-weight: 600; color: var(--texto-suave); letter-spacing: 0; }
+        .price-description { font-size: 0.9rem; color: var(--texto-suave); margin: 10px 0; }
+
+        .btn-cta {
             display: flex;
             flex-direction: column;
-            text-align: left;
+            align-items: center;
+            justify-content: center;
+            background: var(--whatsapp);
+            color: white;
+            text-align: center;
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.28);
+            transition: background 0.2s;
         }
 
-        .cta-title {
-            font-weight: 800;
-            font-size: 0.95rem;
+        .btn-cta-main {
+            font-weight: 900;
+            font-size: 1.15rem;
             line-height: 1.2;
         }
 
-        .cta-sub {
-            font-size: 0.72rem;
-            color: #94a3b8;
-            margin-top: 2px;
+        .btn-cta-sub {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 4px;
         }
 
-        footer {
+        .btn-cta:active { transform: scale(0.98); background: var(--whatsapp-hover); }
+
+        .footer {
             text-align: center;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            padding: 8px 0;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 35px;
+            padding-bottom: 25px;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -238,66 +411,220 @@
 
 <div class="container">
 
-    <!-- HERO -->
-    <div class="hero-banner">
-        <div class="hero-title">Tus clientes no deberían preguntar.<br><span>Deberían comprar.</span></div>
-        <div class="hero-sub">Un solo enlace para que vean tu catálogo, elijan y te manden el pedido listo por WhatsApp.</div>
-        <a href="#" class="btn-demo">► Ver demostración (15s)</a>
+    <!-- HEADER -->
+    <header>
+        <div class="header-banner">
+            <!-- Ruta absoluta corregida -->
+            <img src="https://qrdigital.github.io/demoflowlite/headinformacion1.jpg" alt="VentaLista - Tu sistema de pedidos">
+            <button type="button" onclick="openVideoModal()" class="btn-overlay-demo" title="Ver demo"></button>
+        </div>
+    </header>
+
+    <!-- MODAL DE VIDEO -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button type="button" class="close-video-btn" onclick="closeVideoModal()">&times;</button>
+            <!-- Atributos para prevenir la apertura en ventana nativa móvil -->
+            <video id="demoVideo" controls playsinline webkit-playsinline preload="metadata">
+                <source src="https://qrdigital.github.io/demoflowlite/video1.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
+            </video>
+        </div>
     </div>
 
     <!-- BENEFICIOS -->
-    <div class="card">
+    <div class="section">
         <div class="benefit-list">
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Menos preguntas repetitivas en el chat</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Pedidos claros y estructurados sin errores</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Enlace optimizado para bio de IG, FB y TikTok</div>
-            <div class="benefit-item"><span class="benefit-icon">✓</span> Actualizaciones de productos cuando las necesites</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Menos preguntas repetitivas</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Más pedidos claros</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Enlace ideal para IG, FB y TikTok</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Actualizaciones cuando las necesites</div>
         </div>
     </div>
 
-    <!-- CÓMO COMPRA EL CLIENTE -->
-    <div class="card">
-        <div class="section-title">Así compra tu cliente</div>
-        <div class="benefit-list">
-            <div class="benefit-item"><span class="benefit-icon">1</span> Abre tu enlace desde cualquier celular</div>
-            <div class="benefit-item"><span class="benefit-icon">2</span> Ve productos, precios e información clara</div>
-            <div class="benefit-item"><span class="benefit-icon">3</span> Selecciona lo que quiere</div>
-            <div class="benefit-item"><span class="benefit-icon">4</span> Recibes el pedido listo en tu WhatsApp</div>
+    <!-- PASOS -->
+    <div class="section">
+        <div class="demo-btn-wrapper">
+            <button type="button" class="btn-demo-action" onclick="openVideoModal()">Ver Demo</button>
+        </div>
+        <div class="step-list">
+            <div class="step-item"><span class="step-number">1</span> Abre tu enlace desde cualquier celular</div>
+            <div class="step-item"><span class="step-number">2</span> Ve productos, precios e información clara</div>
+            <div class="step-item"><span class="step-number">3</span> Selecciona lo que quiere</div>
+            <div class="step-item"><span class="step-number">4</span> Recibes el pedido listo en WhatsApp</div>
         </div>
     </div>
 
-    <!-- DIAGNÓSTICO -->
-    <div class="card">
-        <div class="section-title">Diagnóstico Rápido</div>
-        <div class="diag-subtitle">¿Qué tipo de oferta vende tu negocio principalmente?</div>
-        <div class="options-grid">
-            <button class="opt-btn">📦 Productos físicos estándar o catálogo fijo</button>
-            <button class="opt-btn">👕 Productos con tallas, colores o variantes</button>
-            <button class="opt-btn">🛠️ Servicios a medida, asesorías o cotizaciones</button>
-            <button class="opt-btn">🏢 Soluciones B2B o servicios corporativos</button>
-        </div>
-    </div>
-
-    <!-- PRECIO Y CTA PROFESIONAL -->
-    <div class="card price-container">
-        <div class="section-title" style="margin-bottom: 4px;">Empieza a cerrar ventas</div>
-        <div class="price-val">S/ 300 <span>/Anual</span></div>
-        <div class="price-desc">Tú nos envías tu información y nosotros configuramos todo el sistema por ti.</div>
-
-        <a href="https://wa.me/51920832884?text=Hola,%20quiero%20solicitar%20VentaLista" class="btn-cta-pro">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.9-186.6 184.9zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-            </svg>
-            <div class="cta-text">
-                <span class="cta-title">Solicitar VentaLista vía WhatsApp</span>
-                <span class="cta-sub">Activación lista en 24 horas</span>
+    <!-- DIAGNÓSTICO INTERACTIVO -->
+    <div class="section" style="text-align: center;">
+        <h2>DIAGNÓSTICO RÁPIDO (10 SEG)</h2>
+        <p class="quiz-intro" id="quiz-intro-txt">Descubre la estructura exacta que necesita tu negocio antes de solicitarlo.</p>
+        
+        <div id="quiz-box">
+            <!-- Pregunta 1 -->
+            <div class="question-card active" id="q1">
+                <h3>1. ¿Qué tipo de oferta vende tu negocio principalmente?</h3>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="handleTouch(1, 'directa')">📦 Productos físicos estándar o catálogo fijo</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'informada')">👕 Productos con tallas, colores o variantes</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'asistida')">🛠️ Servicios a medida, asesorías o cotizaciones</button>
+                    <button class="opt-btn" onclick="handleTouch(1, 'brochure')">🏢 Soluciones B2B o servicios corporativos</button>
+                </div>
             </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question-card" id="q2">
+                <h3>2. ¿Cuál es tu mayor molestia hoy en WhatsApp?</h3>
+                <div class="options-grid">
+                    <button class="opt-btn" onclick="handleTouch(2, 'directa')">Demoro mucho enviando fotos y precios uno por uno</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'informada')">Pierdo tiempo respondiendo sobre medidas o stock disponible</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'asistida')">Atiendo a personas curiosas que no tienen presupuesto real</button>
+                    <button class="opt-btn" onclick="handleTouch(2, 'brochure')">Envío PDFs pesados que la mayoría de clientes no revisa</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <div class="result-container" id="result-box">
+            <div class="result-rec" id="rec-title">Formato Recomendado</div>
+            <div style="font-size:0.75rem; font-weight:800; color:var(--negro); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Módulos sugeridos para tu flujo:</div>
+            <div id="tools-list"></div>
+            <button class="reset-btn" onclick="resetQuiz()">Volver a realizar el diagnóstico</button>
+        </div>
+    </div>
+
+    <!-- PRECIO Y CTA -->
+    <div class="section" style="text-align: center;">
+        <div class="price-box">
+            <div class="price-title">Empieza a cerrar ventas</div>
+            <div class="price-value">S/ 300 <span>/Anual</span></div>
+            <div class="price-description">Tú nos envías tu información, nosotros configuramos el sistema.</div>
+        </div>
+        
+        <a href="https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista" class="btn-cta" id="main-cta">
+            <span class="btn-cta-main">Solicitar VentaLista vía WhatsApp</span>
+            <span class="btn-cta-sub">Activación en 24h</span>
         </a>
     </div>
 
-    <footer>© 2026 VentaLista. Infraestructura y diseño comercial.</footer>
+    <div class="footer">&copy; 2026 VentaLista. Infraestructura y diseño comercial.</div>
 
 </div>
 
+<script>
+    // Lógica del Video Modal
+    function openVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('demoVideo');
+        modal.style.display = 'flex';
+        video.currentTime = 0;
+        video.play().catch(function(error) {
+            console.log("Autoplay bloqueado o interactuado:", error);
+        });
+    }
+
+    function closeVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('demoVideo');
+        video.pause();
+        modal.style.display = 'none';
+    }
+
+    // Cierra el modal si se hace clic fuera del contenido del video
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('videoModal');
+        if (event.target === modal) {
+            closeVideoModal();
+        }
+    });
+
+    // Lógica del Diagnóstico
+    let scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
+
+    function handleTouch(questionNum, value) {
+        scores[value]++;
+        
+        document.getElementById(`q${questionNum}`).classList.remove('active');
+        
+        if(questionNum < 2) {
+            document.getElementById(`q${questionNum + 1}`).classList.add('active');
+        } else {
+            document.getElementById('quiz-box').style.display = 'none';
+            document.getElementById('quiz-intro-txt').style.display = 'none';
+            evaluateDiagnosis();
+        }
+    }
+
+    function evaluateDiagnosis() {
+        let winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+        const outputData = {
+            'directa': {
+                name: "Recomendado: Formato Compra Directa",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Compra Directa. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Catálogo Expreso", d: "Selección ágil de productos y cálculo automático en interfaz plana." },
+                    { t: "Campos de Despacho", d: "Elección inmediata entre entrega a domicilio o recojo." }
+                ]
+            },
+            'informada': {
+                name: "Recomendado: Formato Compra Informada",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Compra Informada. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Selectores de Atributos", d: "Campos obligatorios de Tallas, Colores o Variantes antes de enviar el pedido." },
+                    { t: "Fichas Plegables", d: "Bloques para guías de medidas, materiales o especificaciones." }
+                ]
+            },
+            'asistida': {
+                name: "Recomendado: Formato Venta Asistida",
+                message: "Hola, completé el diagnóstico. Mi negocio califica para la estructura de Venta Asistida. Quiero activar mi VentaLista por S/ 300.",
+                tools: [
+                    { t: "Filtro de Calificación", d: "Captura de requerimientos exactos previo al contacto." },
+                    { t: "Inyector de Intención", d: "Mensaje estructurado directo al asesor para cotizar más rápido." }
+                ]
+            },
+            'brochure': {
+                name: "Recomendado: Brochure Digital B2B",
+                message: "Hola, completé el diagnóstico. Requerimos la estructura de Brochure Digital B2B. Quiero activarlo por S/ 300.",
+                tools: [
+                    { t: "Módulo de Prestigio Visual", d: "Presentación ejecutiva de catálogo y propuesta de valor." },
+                    { t: "Filtro RUC / Datos Empresa", d: "Captura de datos organizacionales para filtrar leads corporativos." }
+                ]
+            }
+        };
+
+        const selectedResult = outputData[winner];
+        document.getElementById('rec-title').innerText = selectedResult.name;
+        
+        const toolsContainer = document.getElementById('tools-list');
+        toolsContainer.innerHTML = "";
+        selectedResult.tools.forEach(tool => {
+            const div = document.createElement('div');
+            div.className = 'tool-box';
+            div.innerHTML = `<strong>${tool.t}</strong><span>${tool.d}</span>`;
+            toolsContainer.appendChild(div);
+        });
+
+        const cta = document.getElementById('main-cta');
+        cta.href = `https://wa.me/51920832884?text=${encodeURIComponent(selectedResult.message)}`;
+        
+        document.getElementById('result-box').style.display = 'block';
+    }
+
+    function resetQuiz() {
+        scores = { directa: 0, informada: 0, asistida: 0, brochure: 0 };
+        document.getElementById('result-box').style.display = 'none';
+        document.getElementById('quiz-intro-txt').style.display = 'block';
+
+        document.getElementById('quiz-box').style.display = 'block';
+        document.getElementById('q1').classList.add('active');
+        document.getElementById('q2').classList.remove('active');
+        
+        document.getElementById('main-cta').href = "https://wa.me/51920832884?text=Hola,%20quiero%20información/solicitar%20VentaLista";
+    }
+</script>
+
 </body>
 </html>
+
+```
